@@ -1,0 +1,5 @@
+gmx pdb2gmx -f prot_mem_pore.pdb  -o prot_pore_processed.gro -ignh -ter -water spc
+gmx solvate -cp prot_pore_processed.gro  -cs spc216.gro -o system_solv.gro -p topol.top
+gmx solvate -cp newbox.gro  -cs spc216.gro -o system_solv.gro -p topol.top
+perl remove_water.perl -in system_solv.gro -out system_solv_fix.gro -ref O14 -middle C316 -nwater 3
+gmx editconf -f prot_pore_processed.gro -box 9.5 9.5 14 -center 4.75 4.75 7 -o newbox.gro

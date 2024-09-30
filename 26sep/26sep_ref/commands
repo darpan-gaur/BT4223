@@ -1,0 +1,1 @@
+gmx grompp -f minim.mdp -c system_solv_ions.gro -p topol.top -o em.tpr -maxwarn 2

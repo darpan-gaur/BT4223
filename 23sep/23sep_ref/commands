@@ -1,0 +1,1 @@
+gmx grompp -f ions.mdp -c system_solv_fix.gro -p topol.top -o ions.tpr

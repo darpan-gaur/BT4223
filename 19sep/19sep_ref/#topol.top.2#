@@ -1,0 +1,47 @@
+;
+;	File 'topol.top' was generated
+;	By user: hjoshi (1001)
+;	On host: pratyaksha
+;	At date: Thu Sep 19 10:31:48 2024
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2023.4 (-:
+;	
+;	Executable:   /usr/local/gromacs/bin/gmx
+;	Data prefix:  /usr/local/gromacs
+;	Working dir:  /home/hjoshi/bt4223
+;	Command line:
+;	  gmx pdb2gmx -f prot_mem_pore.pdb -o prot_pore_processed.gro -ignh -ter -water spc
+;	Force field was read from current directory or a relative path - path added.
+;
+
+; Include forcefield parameters
+#include "./charmm36-jul2022.ff/forcefield.itp"
+
+; Include chain topologies
+#include "topol_Other_chain_X.itp"
+#include "topol_Protein_chain_A.itp"
+
+; Include water topology
+#include "./charmm36-jul2022.ff/spc.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "./charmm36-jul2022.ff/ions.itp"
+
+[ system ]
+; Name
+Protein
+
+[ molecules ]
+; Compound        #mols
+Other_chain_X       1
+Protein_chain_A     1
